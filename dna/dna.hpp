@@ -1,9 +1,8 @@
 #ifndef BIOLOGY_DNA_DNA_HPP_INCLUDED
 #define BIOLOGY_DNA_DNA_HPP_INCLUDED
 
-#include "chemistry/general/molecules/bit_molecule.hpp"
+#include "msci/genetics/dna/chromosome.hpp"
 
-#include <bitset>
 #include <map>
 #include <string>
 #include <vector>
@@ -16,28 +15,30 @@ namespace msci
 {
 	enum dna_type {natural_dna,extraterrestrial_dna,artificial_dna,ultimate_dna};
 
-	class chromosome;
-
-	class dna : public msci::bit_molecule
+	class dna
 	{
 		public:
 			dna();
-			explicit dna(dna_type,const map<string,chromosome>&);
 			explicit dna(const string&);
 
-			inline map<string,chromosome> get_cromosomes() const
+			inline const map<string,chromosome>& get_cromosomes() const
 			{
 				return chromosomes;
 			}
 
-			inline dna_type get_type() const
+			inline const dna_type& get_type() const
 			{
 				return type;
 			}
 
-			inline string get_file_name() const
+			inline const string& get_file_name() const
 			{
 				return file_name;
+			}
+
+			inline const string& get_species() const
+			{
+				return species;
 			}
 
 			chromosome& operator [](const string&);
@@ -64,29 +65,33 @@ namespace msci
 			}
 
 			bool is_chromosome_loaded(const string&) const;
-			void load_chromosome(vector<string>) const;
+			void load_chromosome(const string&) const;
 			void unload_chromosome(const string&) const;
 			void load_all_chromosomes() const;
-			void load_chromosomes(vector<int>) const;
-			void unload_chromosomes(vector<int>) const;
+			void load_chromosomes(const vector<string>&) const;
+			void unload_chromosomes(const vector<string>&) const;
 
-			void switch_chromosome(int,int,chromosome);
-			void insert_chromosome(int,int,chromosome);
-			void remove_chromosome(int,int);
+			void add_chromosome(const chromosome&);
+			void remove_chromosome(const string&);
+
+			void switch_chromosome(const string&,const string&);
+			void position_chromosome(const string&,int);
 
 			inline int number_of_chromosomes() const
 			{
 				return chromosomes.size();
 			}
 
-			virtual bool is_cyclical() const;
-			virtual bool is_acyclical() const;
+			bool has_gene(const string&);
+			bool has_gene_sequence(const string&);
 
 		private:
 			mutable map<string,chromosome> chromosomes;
+			vector<string> chromosomes_order;
 			dna_type type;
 			string file_name;
 			rapidxml::xml_document<> xml_file;
+			string species;
 	};
 }
 

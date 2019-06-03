@@ -1,4 +1,4 @@
-#include "nitrogenous_base.hpp"
+#include "msci/genetics/dna/nitrogenous_base.hpp"
 
 #include <string>
 

@@ -1,6 +1,6 @@
-#include "chromosome.hpp"
-
-#include "rapidxml/rapidxml.hpp"
+#include "msci/genetics/dna/chromosome.hpp"
+#include "msci/genetics/dna/dna.hpp"
+#include "msci/genetics/dna/full_gene.hpp"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ namespace msci
     	return (genes.count(x) > 0);
     }
 
-    void chromosome::load_gene(const string& new_gen) const
+    void chromosome::load_gene(const string& new_gen)
     {
     	if (!is_gene_loaded(new_gen))
     	{
@@ -33,14 +33,14 @@ namespace msci
 				if (new_gen == gene_name)
 				{
 					string gene_bases = gene_node->value();
-					gene new_gene(gene_bases,gene_name);
+					full_gene new_gene(gene_name,this,gene_bases);
 					genes[gene_name] = new_gene;
 				}
 			}
     	}
     }
 
-    void chromosome::load_genes(vector<string> new_genes) const
+    void chromosome::load_genes(const vector<string>& new_genes)
     {
 		vector<string> loadable_genes;
 		for (const string& new_gene : new_genes)
@@ -58,7 +58,7 @@ namespace msci
 				if (loadable_gene == gene_name)
 				{
 					string gene_bases = gene_node->value();
-					gene new_gene(gene_bases,gene_name);
+					full_gene new_gene(gene_name,this,gene_bases);
 					genes[gene_name] = new_gene;
 				}
 			}
@@ -78,7 +78,7 @@ namespace msci
 	{
 		if (!is_gene_loaded(x))
 		{
-			load_gene(x);
+			//load_gene(x);
 		}
 		return genes.at(x);
 	}
@@ -101,5 +101,29 @@ namespace msci
 	void chromosome::remove_gene(const string& x)
 	{
 		//genes.erase(x - 1);
+	}
+
+	bool chromosome::has_gene(const string& gene_name) const
+	{
+		for (const auto& x_gene : genes)
+		{
+			if (x_gene.second.get_name() == gene_name)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool chromosome::has_gene_sequence(const string& gene_sequence) const
+	{
+		for (const auto& x_gene : genes)
+		{
+			if (x_gene.second.get_sequence() == gene_sequence)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

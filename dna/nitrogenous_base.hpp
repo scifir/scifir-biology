@@ -1,7 +1,7 @@
 #ifndef NITROGENOUS_BASE_HPP_INCLUDED
 #define NITROGENOUS_BASE_HPP_INCLUDED
 
-#include "chemistry/general/molecules/normal_molecule.hpp"
+#include "msci/chemistry.hpp"
 
 #include <string>
 using namespace std;

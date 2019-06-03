@@ -1,17 +1,20 @@
 #ifndef BIOLOGY_DNA_CHROMOSOME_HPP_INCLUDED
 #define BIOLOGY_DNA_CHROMOSOME_HPP_INCLUDED
 
-#include "dna.hpp"
-#include "gene.hpp"
+#include "msci/genetics/dna/gene.hpp"
 
 #include <map>
 #include <string>
 #include <vector>
 
+#include "rapidxml/rapidxml.hpp"
+
 using namespace std;
 
 namespace msci
 {
+	class dna;
+
 	class chromosome
 	{
 		public:
@@ -29,7 +32,7 @@ namespace msci
 				return genes;
 			}
 
-			inline const dna* get_dna_molecule() const
+			inline const dna* get_dna() const
 			{
 				return dna_molecule;
 			}
@@ -40,11 +43,11 @@ namespace msci
 			}
 
 			bool is_gene_loaded(const string&) const;
-			void load_gene(const string&) const;
-			void unload_gene(const string&) const;
+			void load_gene(const string&);
+			void unload_gene(const string&);
 			void load_all_genes() const;
-			void load_genes(vector<string>) const;
-			void unload_genes(vector<string>) const;
+			void load_genes(const vector<string>&);
+			void unload_genes(const vector<string>&);
 
 			gene& operator[](const string&);
 			const gene& operator[](const string&) const;
@@ -58,6 +61,9 @@ namespace msci
 			void insert_gene(const string&,gene);
 			void insert_genes(const string&,map<string,gene>);
 			void remove_gene(const string&);
+
+			bool has_gene(const string&) const;
+			bool has_gene_sequence(const string&) const;
 
 		private:
 			mutable map<string,gene> genes;

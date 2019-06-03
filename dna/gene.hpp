@@ -3,30 +3,51 @@
 
 #include "boost/variant.hpp"
 
-#include "chemistry/general/molecules/normal_molecule.hpp"
+#include "msci/chemistry.hpp"
+#include "msci/genetics/dna/nbase.hpp"
 
-#include <cstdint>
 #include <vector>
 
 using namespace std;
 
 namespace msci
 {
-	typedef boost::variant<vector<uint8_t>,vector<uint16_t>,vector<uint32_t>> vector_nitrogenous_bases;
 	typedef int gen_index_type;
+
+	class chromosome;
 
 	class gene
 	{
 		public:
 			gene();
-			explicit gene(vector_nitrogenous_bases,const string&);
-			explicit gene(const string&,const string&);
+			explicit gene(const string&,chromosome*);
 
-			inline int get_bases() const
+			inline string& get_name()
 			{
-				return 1;
-				//return bases;
+				return name;
 			}
+
+			inline const string& get_name() const
+			{
+				return name;
+			}
+
+			inline chromosome* get_chromosome()
+			{
+				return chromosome_molecule;
+			}
+
+			inline const chromosome* get_chromosome() const
+			{
+				return chromosome_molecule;
+			}
+
+			inline string get_sequence() const
+			{
+				return "";
+			}
+
+			virtual const vector<nbase>& get_bases() const;
 
 			inline int number_of_bases() const
 			{
@@ -40,11 +61,13 @@ namespace msci
 			void insert_base(gen_index_type,uint8_t);
 			void remove_base(gen_index_type);
 
-			//vector<protein> get_codons_proteins() const;
+			//vector<protein> get_codons_protein() const;
+
+			bool is_valid() const;
 
 		private:
-			//vector_nitrogenous_bases bases;
 			string name;
+			chromosome* chromosome_molecule;
 	};
 }
 
