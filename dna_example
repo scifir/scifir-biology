@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<life specie="dog" race="whippet" mechanism="1">
+	<dna total_of_chromosomes="1" total_of_genes="1" total_of_bases="2000">
+		<chromosome name="1" total_of_genes="1" total_of_bases="100">
+			<gene name="AGCTGATC8" size="8">AGCTGATC</gene>
+			<gene name="GTAGCTAG8" size="8">GTAGCTAG</gene>
+		</chromosome>
+	</dna>
+	<rna type="single">
+		<gene name="ATCAGATC8" size="8">ATCAGATC</gene>
+	</rna>
+</life>
