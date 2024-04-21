@@ -1,74 +1,38 @@
-#ifndef BIOLOGY_DNA_GENE_HPP_INCLUDED
-#define BIOLOGY_DNA_GENE_HPP_INCLUDED
+#ifndef SCIFIR_BIOLOGY_DNA_GENE_HPP_INCLUDED
+#define SCIFIR_BIOLOGY_DNA_GENE_HPP_INCLUDED
 
-#include "boost/variant.hpp"
+#include "generic_nbase.hpp"
+#include "dna_sequence.hpp"
+#include "rna.hpp"
 
-#include "msci/chemistry.hpp"
-#include "msci/genetics/dna/nbase.hpp"
-
+#include <iostream>
+#include <sstream>
+#include <string>
 #include <vector>
 
 using namespace std;
 
-namespace msci
+namespace scifir
 {
-	typedef int gen_index_type;
-
-	class chromosome;
-
-	class gene
+	class gene : public dna_sequence
 	{
 		public:
 			gene();
-			explicit gene(const string&,chromosome*);
+			explicit gene(const string&);
 
-			inline string& get_name()
-			{
-				return name;
-			}
+			virtual int number_of_codons() const = 0;
 
-			inline const string& get_name() const
-			{
-				return name;
-			}
+			virtual bool is_valid() const = 0;
 
-			inline chromosome* get_chromosome()
-			{
-				return chromosome_molecule;
-			}
+			//virtual protein get_protein() const = 0;
+			virtual string get_aminoacid_sequence() const = 0;
 
-			inline const chromosome* get_chromosome() const
-			{
-				return chromosome_molecule;
-			}
+			virtual rna get_mrna() const = 0;
 
-			inline string get_sequence() const
-			{
-				return "";
-			}
-
-			virtual const vector<nbase>& get_bases() const;
-
-			inline int number_of_bases() const
-			{
-				return 1;
-				//return bases.size();
-			}
-
-			//molecule operator[](int) const;
-
-			void switch_base(gen_index_type,uint8_t);
-			void insert_base(gen_index_type,uint8_t);
-			void remove_base(gen_index_type);
-
-			//vector<protein> get_codons_protein() const;
-
-			bool is_valid() const;
-
-		private:
 			string name;
-			chromosome* chromosome_molecule;
 	};
 }
 
-#endif // BIOLOGY_DNA_GENE_HPP_INCLUDED
+ostream& operator <<(ostream&,const scifir::gene&);
+
+#endif // SCIFIR_BIOLOGY_DNA_GENE_HPP_INCLUDED

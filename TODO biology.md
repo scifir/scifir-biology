@@ -1,27 +1,52 @@
+// ACTUAL
+// TODO: add lazy initialization to the genome class of chromosomes and to the chromosome class to genes
+// TODO: (maybe) add a full_common_gene class for genes that have only normal bases (not ultimate bases) which use string as container. Do it only if the loading of a gene is expensive
+
 // DNA
-// TODO: see if to separate the dna part of magickscience to msci_dna.a in order to protect it from adding it to GitHub unwantedly
-// TODO: see which functions of molecule change now that bit_molecule is being used and add those functions to normal_molecule, being the ones of molecule class pure-virtual
-// TODO: load and free genes in ram
+// TODO: finish the gene class
+// TODO: create the common_gene class
+// TODO: finish the gene_collection class
+// TODO: add gene::is_valid(),chromosome::is_valid(),dna::is_valid()
+// TODO: gene fingerprint, chromosomes fingerprint, dna fingerprint
+
+// TODO: find out how to use mutable properly
+// TODO: make load_gene and load_genes() work with const
+
+// TODO: add a shared_ptr<vector<nbase>> to the gene class in order to access quickly the nitrogenous bases
+
 // TODO: warn if the DNA is composed by an non-divisible per 3 number of nitrogenous bases
-// TODO: see which enumeration systems exists for genes and use one inside dna class
 // TODO: save() function to store .dna files. new_genes should be stored as another member-variable in order to optimize how to save the file without asking to new_genes all the time
-// TODO: if the pointers of rapidxml have to be deleted or not
 // TODO: maybe the dna should load with a buffer and with multi-threading
-// TODO: compression algorithm maybe using zlib for dna files
-// TODO: see if it's possible to support to write numbers with bytes
-// TODO: add the two dna strings (male and female), and add H- or M- to the operator[] of the dna class as a prefix to select the chain
-// TODO: change the include of gene.hpp of normal_molecule.hpp to a general one for molecules
+// TODO: add the two dna strings (of the dna molecule, the male and the female), and add H- or M- to the operator[] of the dna class as a prefix to select the chain
+// TODO: see which enumeration systems exists for gene names and use one inside dna class
+
+// DNA CLASS
+// TODO: it should detect all genes inside a sequence, and give a vector of them
+
+// CUSTOM_GENE
+// TODO: create a system for specifying new codons for custom nitrogenous bases
+
+// CELLS
+// TODO: create the cell class
+
+// EMBRYOS
+// TODO: create the embryo class
+
+// GENETICS FILES
 // TODO: .genoma files
 // TODO: .dna files can be full or can be compressed (by saying only their respective gen number, without the sequence)
-// TODO: fingerprint of dna files to avoid creation of false files
-// TODO: dna.cpp: rapidxml shouldn't be aliased as namespace (maybe other files too)
-// TODO: dna.cpp: see which is the best method to travel rapidxml, if to use file<> of rapidxml of if to use the actual fstream (maybe other files too)
 // TODO: .mcd (mythical creature dna) file (it goes inside another program, not this library)
+// TODO: compression algorithm maybe using zlib for dna files
+
+// C++
+// TODO: check if to store rapidxml nodes as pointers consumes a lot or a few of memory (if it consumes a lot it's needed to change the xml library being used)
+// TODO: dna.cpp: see which is the best method to travel rapidxml, if to use file<> of rapidxml or if to use the actual fstream (maybe other files too)
+// TODO: see if it's possible to support to write numbers with chars
+// TODO: if the pointers of rapidxml have to be deleted or not
 
 // ANIMAL AND VEGETABLE
 // TODO: .life_sample files
 
-// BIOCHEMISTRY
-// TODO: protein class, with special format to store and load it
-// TODO: molecule::is_biochemical()
-// TODO: Store the proteins only one time, and to calculate a lot of them use that unique instead for the data purpose. For movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein
+// ADVANCED
+// TODO: fingerprint of dna files to avoid creation of false files
+// TODO: test if virtual operator[] of gene class reduces performance related to another mecanism

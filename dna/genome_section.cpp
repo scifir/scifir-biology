@@ -1,29 +1,26 @@
-#include "msci/genetics/dna/chromosome.hpp"
-#include "msci/genetics/dna/dna.hpp"
-#include "msci/genetics/dna/full_gene.hpp"
+#include "genome_section.hpp"
+#include "genome.hpp"
+#include "generic_gene.hpp"
 
 using namespace std;
 
-namespace msci
+namespace scifir
 {
-	chromosome::chromosome()
-	{
-	}
+	genome_section::genome_section()
+	{}
 
-	chromosome::chromosome(const string& new_name,dna* new_dna,rapidxml::xml_node<>* new_chromosome_node) : genes(),dna_molecule(new_dna),chromosome_node(new_chromosome_node),name(new_name)
-	{
-	}
+	genome_section::genome_section(const string& new_name,genome* new_genome,rapidxml::xml_node<>* new_chromosome_node) : genes(),genome_molecule(new_genome),chromosome_node(new_chromosome_node),name(new_name)
+	{}
 
-    chromosome::chromosome(map<string,gene> new_genes) : genes(new_genes)
-    {
-    }
+    genome_section::genome_section(const map<string,shared_ptr<gene>>& new_genes) : genes(new_genes)
+    {}
 
-    bool chromosome::is_gene_loaded(const string& x) const
+    bool genome_section::is_gene_loaded(const string& x) const
     {
     	return (genes.count(x) > 0);
     }
 
-    void chromosome::load_gene(const string& new_gen)
+    void genome_section::load_gene(const string& new_gen)
     {
     	if (!is_gene_loaded(new_gen))
     	{
@@ -33,14 +30,14 @@ namespace msci
 				if (new_gen == gene_name)
 				{
 					string gene_bases = gene_node->value();
-					full_gene new_gene(gene_name,this,gene_bases);
+					shared_ptr<gene> new_gene = make_shared<generic_gene>(gene_name,gene_bases);
 					genes[gene_name] = new_gene;
 				}
 			}
     	}
     }
 
-    void chromosome::load_genes(const vector<string>& new_genes)
+    void genome_section::load_genes(const vector<string>& new_genes)
     {
 		vector<string> loadable_genes;
 		for (const string& new_gene : new_genes)
@@ -58,14 +55,14 @@ namespace msci
 				if (loadable_gene == gene_name)
 				{
 					string gene_bases = gene_node->value();
-					full_gene new_gene(gene_name,this,gene_bases);
+					shared_ptr<gene> new_gene = make_shared<generic_gene>(gene_name,gene_bases);
 					genes[gene_name] = new_gene;
 				}
 			}
 		}
     }
 
-    gene& chromosome::operator[](const string& x)
+    shared_ptr<gene>& genome_section::operator[](const string& x)
     {
     	if (!is_gene_loaded(x))
 		{
@@ -74,7 +71,7 @@ namespace msci
 		return genes.at(x);
     }
 
-	const gene& chromosome::operator[](const string& x) const
+	const shared_ptr<gene>& genome_section::operator[](const string& x) const
 	{
 		if (!is_gene_loaded(x))
 		{
@@ -83,31 +80,31 @@ namespace msci
 		return genes.at(x);
 	}
 
-    void chromosome::switch_gene(const string& x,gene new_gene)
+    void genome_section::switch_gene(const string& x,shared_ptr<gene> new_gene)
 	{
 		genes[x] = new_gene;
 	}
 
-	void chromosome::insert_gene(const string& x,gene new_gene)
+	void genome_section::insert_gene(const string& x,shared_ptr<gene> new_gene)
 	{
 		//genes.insert(x - 1,new_gene);
 	}
 
-	void chromosome::insert_genes(const string& x,map<string,gene> new_genes)
+	void genome_section::insert_genes(const string& x,map<string,shared_ptr<gene>> new_genes)
 	{
 		//genes.insert(x - 1,new_genes,new_genes.size());
 	}
 
-	void chromosome::remove_gene(const string& x)
+	void genome_section::remove_gene(const string& x)
 	{
 		//genes.erase(x - 1);
 	}
 
-	bool chromosome::has_gene(const string& gene_name) const
+	bool genome_section::has_gene(const string& gene_name) const
 	{
 		for (const auto& x_gene : genes)
 		{
-			if (x_gene.second.get_name() == gene_name)
+			if (x_gene.second->name == gene_name)
 			{
 				return true;
 			}
@@ -115,11 +112,11 @@ namespace msci
 		return false;
 	}
 
-	bool chromosome::has_gene_sequence(const string& gene_sequence) const
+	bool genome_section::has_gene_sequence(const string& gene_sequence) const
 	{
 		for (const auto& x_gene : genes)
 		{
-			if (x_gene.second.get_sequence() == gene_sequence)
+			if (x_gene.second->get_sequence() == gene_sequence)
 			{
 				return true;
 			}

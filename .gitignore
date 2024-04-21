@@ -1,0 +1,14 @@
+bin
+CMakeFiles
+CMakeCache.txt
+.kdev4
+.objs
+.vscode
+bin
+Testing
+*.kdev4
+install_manifest.txt
+DartConfiguration.tcl
+CTestTestfile.cmake
+libscifir-biology.a
+Makefile

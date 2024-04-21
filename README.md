@@ -1,17 +1,12 @@
-# MagickScience
+# scifir-biology
 
-Hello! MagickScience is a scientific library for developing lab machines. It provides units, molecules, among other features, to allow developers of scientific software to develop their software easily. Enjoy!
+Welcome! scifir-biology is a C++ scientific library that allows to create software that work with DNA, cells, embryos, and related topics. Centrally, it's a library that provides genetic tools to create genetic software. Additional to that, it can be used to simulate cells and embryos.
 
-MagickScience is under development, but the units are already released. Molecules aren't, but they will by ready soon!
+## Core features
 
-## Units
+### Genes
 
-MagickScience includes special units to use, then it's unneeded to care about having the proper dimensions and prefixes when developing scientific software. Learn how to use them at the [Wiki](https://github.com/Iarfen/MagickScience/wiki/).
+All classes of genes have the base class gene. The two classes of genes that inherit from the gene base class are earth_gene and extended_gene. They have the following characteristics:
 
-## Atoms and molecules
-
-MagickScience has atoms and molecules to use inside scientific software! It's under development, but a big amount is ready. It'll be completed in some months!
-
-## Team
-
-MagickScience is developed by [Ismael Correa](https://github.com/Iarfen/), a software developer of 27 years old. You can email if you find bugs, request new features, or have any other need, at ismael.correa.castro@gmail.com.
+- **earth_gene:** Class that allows to work with the common nitrogenous bases: T, C, G, A and U.
+- **extended_gene:** Class that allows to work with any artificial or extraterrestrial nitrogenous base, by defining it as a new nitrogenous base.

@@ -1,34 +1,49 @@
-#include "msci/genetics/dna/gene.hpp"
-#include "msci/genetics/dna/chromosome.hpp"
-#include "msci/genetics/dna/genome.hpp"
+#include "gene.hpp"
+#include "genome_section.hpp"
+#include "generic_gene.hpp"
 
 #include <cmath>
 
 using namespace std;
 
-namespace msci
+namespace scifir
 {
-	gene::gene() : name(),chromosome_molecule()
-	{
-	}
+	gene::gene() : name()
+	{}
 
-	gene::gene(const string& new_name,chromosome* new_chromosome) : name(new_name),chromosome_molecule(new_chromosome)
-	{
-	}
+	gene::gene(const string& new_name) : name(new_name)
+	{}
 
-	const vector<nbase>& gene::get_bases() const
+	/*string gene::get_sequence() const
 	{
-		return all_genomes[chromosome_molecule->get_dna()->get_species()].get_gene_sequence(chromosome_molecule->get_name(),name);
-	}
-
-	/*molecule gene::operator[](int x) const
-	{
-
+		ostringstream out;
+		vector<generic_nbase> bases;
+		gene* gene_a = const_cast<gene*>(this);
+		generic_gene* generic_gene_a = dynamic_cast<generic_gene*>(gene_a);
+		if (generic_gene_a)
+		{
+			bases = generic_gene_a->get_bases();
+		}
+		else
+		{
+			bases = gene_a->gene::get_bases();
+		}
+		if (bases.size() > 0)
+		{
+			for (const generic_nbase& x_base : bases)
+			{
+				out << x_base;
+			}
+			return out.str();
+		}
+		else
+		{
+			return "";
+		}
 	}*/
+}
 
-	bool gene::is_valid() const
-	{
-		return true;
-		//return ((bases.size() / 3) == floor(bases.size() / 3));
-	}
+ostream& operator <<(ostream& os,const scifir::gene& x)
+{
+	return os << x.name;
 }
