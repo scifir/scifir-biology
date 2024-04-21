@@ -13,7 +13,7 @@ set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(TARGET_H
 dna genes_collection taxonomy)
 
-file(GLOB_RECURSE TARGET_SRC dna/*.cpp genes_collection/*.cpp taxonomy/*.cpp)
+file(GLOB_RECURSE TARGET_SRC dna/*.cpp genes_collection/*.cpp species/*.cpp species_collection/*.cpp)
 
 enable_testing()
 

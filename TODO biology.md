@@ -32,6 +32,9 @@
 // EMBRYOS
 // TODO: create the embryo class
 
+// TAXONOMY
+// TODO: create a good constructor for taxonomic_category that allows to initialize all categories easy
+
 // GENETICS FILES
 // TODO: .genoma files
 // TODO: .dna files can be full or can be compressed (by saying only their respective gen number, without the sequence)
