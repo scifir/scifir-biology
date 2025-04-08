@@ -48,5 +48,6 @@ bool operator ==(const scifir::nbase&,const scifir::nbase&);
 bool operator !=(const scifir::nbase&,const scifir::nbase&);
 
 ostream& operator <<(ostream&,const scifir::nbase&);
+istream& operator >>(istream& is, scifir::nbase& x);
 
 #endif // SCIFIR_BIOLOGY_DNA_NBASE_HPP_INCLUDED

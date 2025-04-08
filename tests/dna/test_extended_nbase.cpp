@@ -6,38 +6,38 @@
 using namespace std;
 using namespace scifir;
 
-TEST_CASE("class custom_nbase","Complete test of custom_nbase class")
+TEST_CASE("class extended_nbase","Complete test of extended_nbase class")
 {
-	SECTION("Initialization of custom_nbase classes")
+	SECTION("Initialization of extended_nbase classes")
 	{
 		extended_nbase a;
-		REQUIRE(bool(a.display() == "0"));
+		CHECK(bool(a.display() == "0"));
 		extended_nbase b = extended_nbase('D');
 		extended_nbase b2 = extended_nbase(b);
-		REQUIRE(bool(b2.display() == "D"));
+		CHECK(bool(b2.display() == "D"));
 		extended_nbase c = extended_nbase(extended_nbase('Y'));
-		REQUIRE(bool(c.display() == "Y"));
+		CHECK(bool(c.display() == "Y"));
 		extended_nbase d = extended_nbase(nbase::A);
-		REQUIRE(bool(d.display() == "A"));
+		CHECK(bool(d.display() == "A"));
 		extended_nbase e = extended_nbase('H');
-		REQUIRE(bool(e.display() == "H"));
+		CHECK(bool(e.display() == "H"));
 	}
 
-	SECTION("Assignment operators of custom_nbase classes")
+	SECTION("Assignment operators of extended_nbase classes")
 	{
 		extended_nbase a = extended_nbase(nbase::G);
 		extended_nbase a2 = extended_nbase('K');
 		a = a2;
-		REQUIRE(bool(a.display() == "K"));
+		CHECK(bool(a.display() == "K"));
 		extended_nbase b = extended_nbase(nbase::G);
 		b = extended_nbase('P');
-		REQUIRE(bool(b.display() == "P"));
+		CHECK(bool(b.display() == "P"));
 		extended_nbase c = extended_nbase('R');
 		c = nbase::A;
-		REQUIRE(bool(c.display() == "A"));
+		CHECK(bool(c.display() == "A"));
 		extended_nbase d = extended_nbase('W');
 		d = 'Q';
-		REQUIRE(bool(d.display() == "Q"));
+		CHECK(bool(d.display() == "Q"));
 	}
 }
 

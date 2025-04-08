@@ -5,15 +5,15 @@
 
 using namespace std;
 
-TEST_CASE("class generic_gene","Complete test of generic_gene class")
+TEST_CASE("class gene","Complete test of gene class")
 {
 	SECTION("Initialization of gene classes")
 	{
 		scifir::gene a;
-		REQUIRE(bool(a.get_sequence() == ""));
+		CHECK(bool(a.get_sequence() == ""));
 		scifir::gene b = scifir::gene("try_gene","TCGA");
-		REQUIRE(bool(b.get_sequence() == "TCGA"));
+		CHECK(bool(b.get_sequence() == "TCGA"));
 		scifir::gene c = scifir::gene("try_gene2","TCRGAY");
-		REQUIRE(bool(c.get_sequence() == "TC0GA0"));
+		CHECK(bool(c.get_sequence() == "TC0GA0"));
 	}
 }

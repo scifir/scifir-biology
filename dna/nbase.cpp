@@ -117,6 +117,10 @@ namespace scifir
 		{
 			return "0";
 		}
+		else if (x == nbase::CUSTOM)
+		{
+			return "X";
+		}
 	}
 
 	string to_string(const nbase& x)
@@ -198,13 +202,13 @@ namespace scifir
 
 	nbase to_dna_nbase(const nbase& x_base)
 	{
-		if (x_base.base == nbase::A)
-		{
-			return nbase(nbase::U);
-		}
-		else if (x_base.base == nbase::T)
+		if (x_base.base == nbase::U)
 		{
 			return nbase(nbase::A);
+		}
+		else if (x_base.base == nbase::A)
+		{
+			return nbase(nbase::T);
 		}
 		else if (x_base.base == nbase::C)
 		{
@@ -297,4 +301,13 @@ bool operator !=(const scifir::nbase& x,const scifir::nbase& y)
 ostream& operator <<(ostream& os,const scifir::nbase& x)
 {
 	return os << to_string(x.base);
+}
+
+istream& operator >>(istream& is, scifir::nbase& x)
+{
+	char a[256];
+	is.getline(a, 256);
+	string b(a);
+	x = scifir::nbase(b.at(0));
+	return is;
 }

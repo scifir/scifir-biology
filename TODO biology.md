@@ -20,6 +20,12 @@
 // TODO: add the two dna strings (of the dna molecule, the male and the female), and add H- or M- to the operator[] of the dna class as a prefix to select the chain
 // TODO: see which enumeration systems exists for gene names and use one inside dna class
 
+- TODO: convert DNA to RNA and viceversa
+- TODO: convert dna_sequence to mrna
+- TODO: convert mrna to protein
+- TODO: classes of protein data should be inside scifir-chemistry
+- TODO: function that detects the sequence that directs the mrna to some place inside the cell
+
 // DNA CLASS
 // TODO: it should detect all genes inside a sequence, and give a vector of them
 
