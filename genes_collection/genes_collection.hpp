@@ -1,12 +1,12 @@
 #ifndef SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_HPP_INCLUDED
 #define SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_HPP_INCLUDED
 
-#include "genes_collection_source.hpp"
-#include "genes_collection_genome.hpp"
+#include "./genes_collection_data_source.hpp"
+#include "./genes_collection_genome.hpp"
 
-#include "dna/generic_nbase.hpp"
-#include "dna/genome.hpp"
-#include "dna/genome_section.hpp"
+#include "../dna/nbase.hpp"
+#include "../dna/genome.hpp"
+#include "../dna/chromosome.hpp"
 
 #include <map>
 #include <memory>
@@ -31,17 +31,17 @@ namespace scifir
 			void load_species_from_family(const string& family) const;
 			void load_species_from_genus(const string& genus) const;
 
-			const vector<generic_nbase>& get_gene_sequence(const string&,const string&) const;
+			const vector<nbase>& get_gene_sequence(const string&,const string&) const;
 
-			const vector<unique_ptr<genes_collection_source>>& get_sources() const;
+			const vector<unique_ptr<genes_collection_data_source>>& get_sources() const;
 
 		private:
-			vector<unique_ptr<genes_collection_source>> sources;
-			mutable map<string,genome_section> chromosomes;
+			vector<unique_ptr<genes_collection_data_source>> sources;
+			mutable map<string,chromosome> chromosomes;
 			vector<string> chromosomes_order;
 			dna_type type;
 			string file_name;
-			rapidxml::xml_document<> xml_file;
+//			rapidxml::xml_document<> xml_file;
 	};
 
 	extern map<string,genes_collection> all_genomes;

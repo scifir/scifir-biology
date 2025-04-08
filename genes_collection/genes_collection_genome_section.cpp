@@ -1,8 +1,8 @@
-#include "genes_collection_genome_section.hpp"
+#include "./genes_collection_genome_section.hpp"
 
-#include "dna/generic_gene.hpp"
-#include "dna/generic_noncoding_sequence.hpp"
-#include "genes_collection.hpp"
+#include "../dna/gene.hpp"
+#include "../dna/dna_sequence.hpp"
+#include "./genes_collection.hpp"
 
 using namespace std;
 
@@ -36,20 +36,20 @@ namespace scifir
 		return *this;
 	}
 
-	const vector<unique_ptr<genes_collection_source>>& genes_collection_genome_section::get_sources() const
+	const vector<unique_ptr<genes_collection_data_source>>& genes_collection_genome_section::get_sources() const
 	{
 		return parent_gene_genome->get_parent_gene_collection()->get_sources();
 	}
 
 	void genes_collection_genome_section::load_gene(const string& gene_name) const
 	{
-		const vector<unique_ptr<genes_collection_source>>& sources = get_sources();
+		const vector<unique_ptr<genes_collection_data_source>>& sources = get_sources();
 		for (int i = 0; i < sources.size(); i++)
 		{
 			string new_gene_sequence = sources[i]->get_gene_sequence(genome_section_name,gene_name);
 			if (new_gene_sequence != "")
 			{
-				dna_sequences[gene_name] = make_shared<generic_gene>(generic_gene(gene_name,new_gene_sequence));
+				dna_sequences[gene_name] = make_shared<gene>(gene(gene_name,new_gene_sequence));
 				break;
 			}
 		}
@@ -57,13 +57,13 @@ namespace scifir
 
 	void genes_collection_genome_section::load_noncoding_sequence(const string& noncoding_sequence_name) const
 	{
-		const vector<unique_ptr<genes_collection_source>>& sources = get_sources();
+		const vector<unique_ptr<genes_collection_data_source>>& sources = get_sources();
 		for (int i = 0; i < sources.size(); i++)
 		{
 			string new_gene_sequence = sources[i]->get_noncoding_sequence(genome_section_name,noncoding_sequence_name);
 			if (new_gene_sequence != "")
 			{
-				dna_sequences[noncoding_sequence_name] = make_shared<generic_noncoding_sequence>(generic_noncoding_sequence(noncoding_sequence_name,new_gene_sequence));
+				dna_sequences[noncoding_sequence_name] = make_shared<dna_sequence>(dna_sequence(noncoding_sequence_name,new_gene_sequence));
 				break;
 			}
 		}

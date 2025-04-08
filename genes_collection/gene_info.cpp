@@ -1,4 +1,4 @@
-#include "gene_info.hpp"
+#include "./gene_info.hpp"
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "species_info.hpp"
+#include "./species_info.hpp"
 
 #include <sstream>
 

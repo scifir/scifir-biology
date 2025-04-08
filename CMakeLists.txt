@@ -22,28 +22,43 @@ project(scifir-biology VERSION 1.0.0)
 add_library(scifir-biology ${TARGET_SRC})
 #target_link_libraries(scifir-biology boost_locale-mt boost_system-mt boost_thread-mt iconv)
 
-add_executable(test_generic_nbase tests/test_generic_nbase.cpp)
-target_link_libraries(test_generic_nbase PRIVATE Catch2::Catch2 scifir-biology)
-add_test(NAME test_generic_nbase COMMAND test_generic_nbase)
-set_tests_properties(test_generic_nbase PROPERTIES LABELS tests)
+if(BUILD_TESTING)
 
-add_executable(test_custom_nbase tests/test_custom_nbase.cpp)
-target_link_libraries(test_custom_nbase PRIVATE Catch2::Catch2 scifir-biology)
-add_test(NAME test_custom_nbase COMMAND test_custom_nbase)
-set_tests_properties(test_custom_nbase PROPERTIES LABELS tests)
+	find_package(Catch2 CONFIG REQUIRED)
 
-add_executable(test_generic_gene tests/test_generic_gene.cpp)
-target_link_libraries(test_generic_gene PRIVATE Catch2::Catch2 scifir-biology)
-add_test(NAME test_generic_gene COMMAND test_generic_gene)
-set_tests_properties(test_generic_gene PROPERTIES LABELS tests)
+	if(!Catch2_FOUND)
+		message("Catch2 not found, tests can't be build.")
+	endif()
 
-add_executable(benchmark_nbase tests/benchmark_nbase.cpp)
-target_link_libraries(benchmark_nbase PRIVATE Catch2::Catch2 scifir-biology)
-add_test(NAME benchmark_nbase COMMAND benchmark_nbase)
-set_tests_properties(benchmark_nbase PROPERTIES LABELS benchmarks)
+	if(Catch2_FOUND)
+		enable_testing()
 
-include(CTest)
-include(Catch)
+		add_executable(test_generic_nbase tests/dna/test_generic_nbase.cpp)
+		target_link_libraries(test_generic_nbase PRIVATE Catch2::Catch2WithMain scifir-biology)
+		add_test(NAME test_generic_nbase COMMAND test_generic_nbase)
+		set_tests_properties(test_generic_nbase PROPERTIES LABELS tests)
+
+		add_executable(test_custom_nbase tests/dna/test_custom_nbase.cpp)
+		target_link_libraries(test_custom_nbase PRIVATE Catch2::Catch2WithMain scifir-biology)
+		add_test(NAME test_custom_nbase COMMAND test_custom_nbase)
+		set_tests_properties(test_custom_nbase PROPERTIES LABELS tests)
+
+		add_executable(test_generic_gene tests/dna/test_generic_gene.cpp)
+		target_link_libraries(test_generic_gene PRIVATE Catch2::Catch2WithMain scifir-biology)
+		add_test(NAME test_generic_gene COMMAND test_generic_gene)
+		set_tests_properties(test_generic_gene PROPERTIES LABELS tests)
+
+		add_executable(benchmark_nbase tests/benchmark_nbase.cpp)
+		target_link_libraries(benchmark_nbase PRIVATE Catch2::Catch2WithMain scifir-biology)
+		add_test(NAME benchmark_nbase COMMAND benchmark_nbase)
+		set_tests_properties(benchmark_nbase PROPERTIES LABELS benchmarks)
+
+		include(CTest)
+		include(Catch)
+
+	endif()
+
+endif()
 
 install(TARGETS scifir-biology ARCHIVE DESTINATION lib)
 install(FILES biology.hpp DESTINATION include/scifir)

@@ -1,9 +1,9 @@
 #ifndef SCIFIR_BIOLOGY_DNA_GENE_HPP_INCLUDED
 #define SCIFIR_BIOLOGY_DNA_GENE_HPP_INCLUDED
 
-#include "generic_nbase.hpp"
-#include "dna_sequence.hpp"
-#include "rna.hpp"
+#include "./nbase.hpp"
+#include "./dna_sequence.hpp"
+#include "./rna.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -18,18 +18,18 @@ namespace scifir
 	{
 		public:
 			gene();
-			explicit gene(const string&);
+			explicit gene(const string&,const string&);
 
-			virtual int number_of_codons() const = 0;
+			virtual dna_sequence::type get_type() const;
 
-			virtual bool is_valid() const = 0;
+			virtual int number_of_codons() const;
 
-			//virtual protein get_protein() const = 0;
-			virtual string get_aminoacid_sequence() const = 0;
+			virtual bool is_valid() const;
 
-			virtual rna get_mrna() const = 0;
+			//virtual protein get_protein() const;
+			virtual string get_aminoacid_sequence() const;
 
-			string name;
+			virtual rna get_mrna() const;
 	};
 }
 

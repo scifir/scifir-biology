@@ -1,5 +1,5 @@
-#ifndef SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_SOURCE_HPP_INCLUDED
-#define SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_SOURCE_HPP_INCLUDED
+#ifndef SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_DATA_SOURCE_HPP_INCLUDED
+#define SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_DATA_SOURCE_HPP_INCLUDED
 
 #include <string>
 #include <vector>
@@ -8,10 +8,10 @@ using namespace std;
 
 namespace scifir
 {
-	class genes_collection_source
+	class genes_collection_data_source
 	{
 		public:
-			genes_collection_source();
+			genes_collection_data_source();
 
 			virtual string get_dna_sequence(const string& genome_section,const string& dna_sequence_name) const = 0;
 			virtual string get_gene_sequence(const string& genome_section,const string& gene_name) const = 0;
@@ -37,4 +37,4 @@ namespace scifir
 	};
 }
 
-#endif // SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_SOURCE_HPP_INCLUDED
+#endif // SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_DATA_SOURCE_HPP_INCLUDED

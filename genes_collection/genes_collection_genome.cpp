@@ -1,7 +1,7 @@
-#include "genes_collection_genome.hpp"
+#include "./genes_collection_genome.hpp"
 
-#include "genes_collection.hpp"
-#include "genes_collection_genome_section.hpp"
+#include "./genes_collection.hpp"
+#include "./genes_collection_genome_section.hpp"
 
 using namespace std;
 
@@ -30,7 +30,7 @@ namespace scifir
 		return genome_sections[genome_section_name];
 	}
 
-	const vector<unique_ptr<genes_collection_source>>& genes_collection_genome::get_sources() const
+	const vector<unique_ptr<genes_collection_data_source>>& genes_collection_genome::get_sources() const
 	{
 		return parent_gene_collection->get_sources();
 	}
@@ -50,7 +50,7 @@ namespace scifir
 
 	void genes_collection_genome::load_genome_sections() const
 	{
-		const vector<unique_ptr<genes_collection_source>>& sources = get_sources();
+		const vector<unique_ptr<genes_collection_data_source>>& sources = get_sources();
 		for (int i = 0; i < sources.size(); i++)
 		{
 			vector<string> new_genome_sections = sources[i]->get_genome_sections_from_species(species);

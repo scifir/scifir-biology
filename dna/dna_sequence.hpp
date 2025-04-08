@@ -2,29 +2,52 @@
 #define SCIFIR_BIOLOGY_DNA_DNA_SEQUENCE_HPP_INCLUDED
 
 #include <string>
+#include <vector>
+
+#include "./nbase.hpp"
+#include "./rna.hpp"
 
 using namespace std;
 
 namespace scifir
 {
+	class rna;
+
 	class dna_sequence
 	{
 		public:
+			enum type { GENE, NONCODING_SEQUENCE };
+
 			dna_sequence();
+			explicit dna_sequence(const string& new_name,const string& new_sequence);
+			explicit dna_sequence(const string& new_name,const vector<nbase>& new_bases);
 
-			virtual string get_base(int) const = 0;
-			virtual void switch_base(int,char) = 0;
-			virtual void insert_base(int,char) = 0;
-			virtual void remove_base(int) = 0;
+			virtual dna_sequence::type get_type() const;
 
-			virtual string get_sequence() const = 0;
-			virtual void switch_sequence(int,const string&) = 0;
-			virtual void insert_sequence(int,const string&) = 0;
-			virtual void set_sequence(const string&) = 0;
-			virtual void remove_sequence(int,int) = 0;
+			const vector<nbase>& get_bases() const;
+			virtual nbase get_base(int index) const;
+			
+			virtual void switch_base(int index,char new_base);
+			virtual void insert_base(int index,char new_base);
+			virtual void remove_base(int index);
 
-			virtual int number_of_bases() const = 0;
+			virtual string get_sequence() const;
+			virtual void switch_sequence(int index,const string& new_sequence);
+			virtual void insert_sequence(int index,const string& new_sequence);
+			virtual void set_sequence(const string& new_sequence);
+			virtual void remove_sequence(int index,int total);
+
+			virtual int number_of_bases() const;
+
+			rna to_rna() const;
+
+			string name;
+		
+		protected:
+			vector<nbase> bases;
 	};
 }
+
+ostream& operator <<(ostream& os,const scifir::dna_sequence& x);
 
 #endif // SCIFIR_BIOLOGY_DNA_DNA_SEQUENCE_HPP_INCLUDED

@@ -1,10 +1,10 @@
 #ifndef SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_GENOME_SECTION_HPP_INCLUDED
 #define SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_GENOME_SECTION_HPP_INCLUDED
 
-#include "dna/dna_sequence.hpp"
+#include "../dna/dna_sequence.hpp"
 
-#include "genes_collection_genome.hpp"
-#include "genes_collection_source.hpp"
+#include "./genes_collection_genome.hpp"
+#include "./genes_collection_data_source.hpp"
 
 #include <map>
 #include <memory>
@@ -26,7 +26,7 @@ namespace scifir
 			genes_collection_genome_section& operator =(const genes_collection_genome_section&);
 			genes_collection_genome_section& operator =(genes_collection_genome_section&&);
 
-			const vector<unique_ptr<genes_collection_source>>& get_sources() const;
+			const vector<unique_ptr<genes_collection_data_source>>& get_sources() const;
 
 			void load_gene(const string&) const;
 			void load_noncoding_sequence(const string&) const;

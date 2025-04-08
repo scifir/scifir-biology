@@ -1,10 +1,9 @@
 #ifndef SCIFIR_BIOLOGY_SPECIES_SPECIES_INFO_HPP
 #define SCIFIR_BIOLOGY_SPECIES_SPECIES_INFO_HPP
 
-#include "taxonomic_category.hpp"
+#include "./taxonomic_category.hpp"
 
 #include <string>
-#include <vector>
 
 using namespace std;
 

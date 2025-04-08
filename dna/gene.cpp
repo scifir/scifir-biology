@@ -1,6 +1,4 @@
-#include "gene.hpp"
-#include "genome_section.hpp"
-#include "generic_gene.hpp"
+#include "./gene.hpp"
 
 #include <cmath>
 
@@ -8,39 +6,47 @@ using namespace std;
 
 namespace scifir
 {
-	gene::gene() : name()
+	gene::gene() : dna_sequence()
 	{}
 
-	gene::gene(const string& new_name) : name(new_name)
+	gene::gene(const string& new_name,const string& new_sequence) : dna_sequence(new_name,new_sequence)
 	{}
 
-	/*string gene::get_sequence() const
+	dna_sequence::type gene::get_type() const
 	{
-		ostringstream out;
-		vector<generic_nbase> bases;
-		gene* gene_a = const_cast<gene*>(this);
-		generic_gene* generic_gene_a = dynamic_cast<generic_gene*>(gene_a);
-		if (generic_gene_a)
+		return dna_sequence::GENE;
+	}
+
+	int gene::number_of_codons() const
+	{
+		return floor(bases.size() / 3);
+	}
+
+	bool gene::is_valid() const
+	{
+		if (!(bases[0].base == nbase::T and bases[1].base == nbase::A and bases[2].base == nbase::C))
 		{
-			bases = generic_gene_a->get_bases();
+			return false;
 		}
-		else
+		int total = bases.size();
+		if (!(bases[total - 3].base == nbase::A and bases[total - 2].base == nbase::T and bases[total - 1].base == nbase::T) and !(bases[total - 3].base == nbase::A and bases[total - 2].base == nbase::T and bases[total - 1].base == nbase::C) and !(bases[total - 3].base == nbase::A and bases[total - 2].base == nbase::C and bases[total - 1].base == nbase::T))
 		{
-			bases = gene_a->gene::get_bases();
+			return false;
 		}
-		if (bases.size() > 0)
-		{
-			for (const generic_nbase& x_base : bases)
-			{
-				out << x_base;
-			}
-			return out.str();
-		}
-		else
-		{
-			return "";
-		}
-	}*/
+		return ((bases.size() / 3) == floor(bases.size() / 3));
+	}
+
+	//protein gene::get_protein() const
+
+	string gene::get_aminoacid_sequence() const
+	{
+		return "";
+	}
+
+	rna gene::get_mrna() const
+	{
+		return rna();
+	}	
 }
 
 ostream& operator <<(ostream& os,const scifir::gene& x)

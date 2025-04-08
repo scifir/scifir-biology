@@ -1,9 +1,9 @@
 #ifndef SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_GENOME_HPP_INCLUDED
 #define SCIFIR_BIOLOGY_GENES_COLLECTION_GENES_COLLECTION_GENOME_HPP_INCLUDED
 
-#include "dna/genome_section.hpp"
+#include "../dna/chromosome.hpp"
 
-#include "genes_collection_source.hpp"
+#include "./genes_collection_data_source.hpp"
 
 #include <map>
 #include <memory>
@@ -28,7 +28,7 @@ namespace scifir
 
 			const genes_collection_genome_section& operator [](const string&) const;
 
-			const vector<unique_ptr<genes_collection_source>>& get_sources() const;
+			const vector<unique_ptr<genes_collection_data_source>>& get_sources() const;
 
 			void load_dna_sequence(const string& genome_section,const string& dna_sequence_name) const;
 			void load_gene(const string& genome_section,const string& gene_name) const;
