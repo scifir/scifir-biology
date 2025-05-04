@@ -16,7 +16,7 @@ The **Scifir Foundation** is looking for **funding**, in order to do some digita
 
 ## Installation
 
-To install scifir-biology you have to use CMake and Make. The library is called scifir-biology, and you can just link the file **libscifir-biology.a** to your project as any C++ library. The commands to install it in a Linux distribution are the following:
+To install scifir-biology you have to use CMake and Make. You need to install first scifir-units and scifir-chemistry, present here at GitHub too. The library is called scifir-biology, and you can just link the file **libscifir-biology.a** to your project as any C++ library. The commands to install it in a Linux distribution are the following:
 
 ```sh
 cmake .

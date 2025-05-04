@@ -8,4 +8,7 @@
 #include "biology/dna/genome.hpp"
 #include "biology/dna/rna.hpp"
 
+#include "biology/genes_collection/gene_info_collection.hpp"
+#include "biology/genes_collection/gene_info_collection_data_source.hpp"
+
 #endif // SCIFIR_BIOLOGY_GENETICS_HPP_INCLUDED

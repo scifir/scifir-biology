@@ -5,6 +5,8 @@
 #include "./dna_sequence.hpp"
 #include "./rna.hpp"
 
+#include "scifir/chemistry.hpp"
+
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -26,7 +28,7 @@ namespace scifir
 
 			virtual bool is_valid() const;
 
-			//virtual protein get_protein() const;
+			virtual protein get_protein() const;
 			virtual string get_aminoacid_sequence() const;
 
 			virtual rna get_mrna() const;

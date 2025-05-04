@@ -121,6 +121,7 @@ namespace scifir
 		{
 			return "X";
 		}
+		return "";
 	}
 
 	string to_string(const nbase& x)
@@ -271,6 +272,275 @@ namespace scifir
 			return nbase();
 		}
 	}
+
+	aminoacid mrna_to_aminoacid(nbase::type x_base1, nbase::type x_base2, nbase::type x_base3)
+	{
+		if (x_base1 == nbase::U and x_base2 == nbase::U and x_base3 == nbase::U)
+		{
+			return aminoacid::Phe;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::U and x_base3 == nbase::C)
+		{
+			return aminoacid::Phe;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::U and x_base3 == nbase::A)
+		{
+			return aminoacid::Leu;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::U and x_base3 == nbase::G)
+		{
+			return aminoacid::Leu;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::C and x_base3 == nbase::U)
+		{
+			return aminoacid::Ser;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::C and x_base3 == nbase::C)
+		{
+			return aminoacid::Ser;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::C and x_base3 == nbase::A)
+		{
+			return aminoacid::Ser;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::C and x_base3 == nbase::G)
+		{
+			return aminoacid::Ser;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::A and x_base3 == nbase::U)
+		{
+			return aminoacid::Tyr;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::A and x_base3 == nbase::C)
+		{
+			return aminoacid::Tyr;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::A and x_base3 == nbase::A)
+		{
+			return aminoacid::ERROR;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::A and x_base3 == nbase::G)
+		{
+			return aminoacid::ERROR;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::G and x_base3 == nbase::U)
+		{
+			return aminoacid::Cys;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::G and x_base3 == nbase::C)
+		{
+			return aminoacid::Cys;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::G and x_base3 == nbase::A)
+		{
+			return aminoacid::ERROR;
+		}
+		else if (x_base1 == nbase::U and x_base2 == nbase::G and x_base3 == nbase::G)
+		{
+			return aminoacid::Trp;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::U and x_base3 == nbase::U)
+		{
+			return aminoacid::Leu;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::U and x_base3 == nbase::C)
+		{
+			return aminoacid::Leu;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::U and x_base3 == nbase::A)
+		{
+			return aminoacid::Leu;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::U and x_base3 == nbase::G)
+		{
+			return aminoacid::Leu;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::C and x_base3 == nbase::U)
+		{
+			return aminoacid::Pro;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::C and x_base3 == nbase::C)
+		{
+			return aminoacid::Pro;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::C and x_base3 == nbase::A)
+		{
+			return aminoacid::Pro;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::C and x_base3 == nbase::G)
+		{
+			return aminoacid::Pro;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::A and x_base3 == nbase::U)
+		{
+			return aminoacid::His;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::A and x_base3 == nbase::C)
+		{
+			return aminoacid::His;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::A and x_base3 == nbase::A)
+		{
+			return aminoacid::Gln;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::A and x_base3 == nbase::G)
+		{
+			return aminoacid::Gln;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::G and x_base3 == nbase::U)
+		{
+			return aminoacid::Arg;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::G and x_base3 == nbase::C)
+		{
+			return aminoacid::Arg;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::G and x_base3 == nbase::A)
+		{
+			return aminoacid::Arg;
+		}
+		else if (x_base1 == nbase::C and x_base2 == nbase::G and x_base3 == nbase::G)
+		{
+			return aminoacid::Arg;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::U and x_base3 == nbase::U)
+		{
+			return aminoacid::Ile;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::U and x_base3 == nbase::C)
+		{
+			return aminoacid::Ile;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::U and x_base3 == nbase::A)
+		{
+			return aminoacid::Ile;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::U and x_base3 == nbase::G)
+		{
+			return aminoacid::Met;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::C and x_base3 == nbase::U)
+		{
+			return aminoacid::Thr;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::C and x_base3 == nbase::C)
+		{
+			return aminoacid::Thr;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::C and x_base3 == nbase::A)
+		{
+			return aminoacid::Thr;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::C and x_base3 == nbase::G)
+		{
+			return aminoacid::Thr;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::A and x_base3 == nbase::U)
+		{
+			return aminoacid::Asn;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::A and x_base3 == nbase::C)
+		{
+			return aminoacid::Asn;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::A and x_base3 == nbase::A)
+		{
+			return aminoacid::Lys;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::A and x_base3 == nbase::G)
+		{
+			return aminoacid::Lys;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::G and x_base3 == nbase::U)
+		{
+			return aminoacid::Ser;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::G and x_base3 == nbase::C)
+		{
+			return aminoacid::Ser;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::G and x_base3 == nbase::A)
+		{
+			return aminoacid::Arg;
+		}
+		else if (x_base1 == nbase::A and x_base2 == nbase::G and x_base3 == nbase::G)
+		{
+			return aminoacid::Arg;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::U and x_base3 == nbase::U)
+		{
+			return aminoacid::Val;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::U and x_base3 == nbase::C)
+		{
+			return aminoacid::Val;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::U and x_base3 == nbase::A)
+		{
+			return aminoacid::Val;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::U and x_base3 == nbase::G)
+		{
+			return aminoacid::Val;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::C and x_base3 == nbase::U)
+		{
+			return aminoacid::Ala;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::C and x_base3 == nbase::C)
+		{
+			return aminoacid::Ala;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::C and x_base3 == nbase::A)
+		{
+			return aminoacid::Ala;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::C and x_base3 == nbase::G)
+		{
+			return aminoacid::Ala;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::A and x_base3 == nbase::U)
+		{
+			return aminoacid::Asp;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::A and x_base3 == nbase::C)
+		{
+			return aminoacid::Asp;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::A and x_base3 == nbase::A)
+		{
+			return aminoacid::Glu;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::A and x_base3 == nbase::G)
+		{
+			return aminoacid::Glu;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::G and x_base3 == nbase::U)
+		{
+			return aminoacid::Gly;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::G and x_base3 == nbase::C)
+		{
+			return aminoacid::Gly;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::G and x_base3 == nbase::A)
+		{
+			return aminoacid::Gly;
+		}
+		else if (x_base1 == nbase::G and x_base2 == nbase::G and x_base3 == nbase::G)
+		{
+			return aminoacid::Gly;
+		}
+		else
+		{
+			return aminoacid::ERROR;
+		}
+	}
+
+	aminoacid mrna_to_aminoacid(const nbase& x_base1, const nbase& x_base2, const nbase& x_base3)
+	{
+
+	}
 }
 
 void operator +=(string& x, const scifir::nbase& y)
@@ -286,6 +556,26 @@ string operator +(const string& x,const scifir::nbase& y)
 string operator +(const scifir::nbase& x,const string& y)
 {
 	return (to_string(x.base) + y);
+}
+
+bool operator ==(const scifir::nbase::type& x,const scifir::nbase& y)
+{
+	return (x == y.base);
+}
+
+bool operator !=(const scifir::nbase::type& x,const scifir::nbase& y)
+{
+	return (x != y.base);
+}
+
+bool operator ==(const scifir::nbase& x,const scifir::nbase::type& y)
+{
+	return (x.base == y);
+}
+
+bool operator !=(const scifir::nbase& x,const scifir::nbase::type& y)
+{
+	return (x.base != y);
 }
 
 bool operator ==(const scifir::nbase& x,const scifir::nbase& y)

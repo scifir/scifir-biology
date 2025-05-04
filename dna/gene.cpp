@@ -36,16 +36,61 @@ namespace scifir
 		return ((bases.size() / 3) == floor(bases.size() / 3));
 	}
 
-	//protein gene::get_protein() const
+	protein gene::get_protein() const
+	{
+		rna mrna = get_mrna();
+		vector<aminoacid> new_aminoacids = vector<aminoacid>();
+		if (is_valid() and (mrna.bases[0] == nbase::A and mrna.bases[1] == nbase::U and mrna.bases[2] == nbase::G) or (mrna.bases[0] == nbase::U and mrna.bases[1] == nbase::U and mrna.bases[2] == nbase::G) or (mrna.bases[0] == nbase::G and mrna.bases[1] == nbase::U and mrna.bases[2] == nbase::G))
+		{
+			for (int i = 3; mrna.bases.size(); i += 3)
+			{
+				if ((mrna.bases[i] == nbase::U and mrna.bases[i + 1] == nbase::A and mrna.bases[i + 2] == nbase::A) or (mrna.bases[i] == nbase::U and mrna.bases[i + 1] == nbase::A and mrna.bases[i + 2] == nbase::G) or (mrna.bases[i] == nbase::U and mrna.bases[i + 1] == nbase::G and mrna.bases[i + 2] == nbase::A))
+				{
+					break;
+				}
+				else
+				{
+					new_aminoacids.push_back(mrna_to_aminoacid(mrna.bases[i],mrna.bases[i + 1],mrna.bases[i + 2]));
+				}
+			}
+		}
+		return protein("",new_aminoacids);
+	}
 
 	string gene::get_aminoacid_sequence() const
 	{
-		return "";
+		rna mrna = get_mrna();
+		vector<aminoacid> new_aminoacids = vector<aminoacid>();
+		if (is_valid() and (mrna.bases[0] == nbase::A and mrna.bases[1] == nbase::U and mrna.bases[2] == nbase::G) or (mrna.bases[0] == nbase::U and mrna.bases[1] == nbase::U and mrna.bases[2] == nbase::G) or (mrna.bases[0] == nbase::G and mrna.bases[1] == nbase::U and mrna.bases[2] == nbase::G))
+		{
+			ostringstream out;
+			for (int i = 3; mrna.bases.size(); i += 3)
+			{
+				if ((mrna.bases[i] == nbase::U and mrna.bases[i + 1] == nbase::A and mrna.bases[i + 2] == nbase::A) or (mrna.bases[i] == nbase::U and mrna.bases[i + 1] == nbase::A and mrna.bases[i + 2] == nbase::G) or (mrna.bases[i] == nbase::U and mrna.bases[i + 1] == nbase::G and mrna.bases[i + 2] == nbase::A))
+				{
+					break;
+				}
+				else
+				{
+					out << mrna_to_aminoacid(mrna.bases[i],mrna.bases[i + 1],mrna.bases[i + 2]).get_abbreviation();
+				}
+			}
+			return out.str();
+		}
+		else
+		{
+			return "";
+		}
 	}
 
 	rna gene::get_mrna() const
 	{
-		return rna();
+		vector<nbase> new_bases;
+		for (const nbase& x_base : bases)
+		{
+			new_bases.push_back(to_rna_nbase(x_base));
+		}
+		return rna(new_bases);
 	}	
 }
 

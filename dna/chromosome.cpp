@@ -9,11 +9,8 @@ namespace scifir
 	chromosome::chromosome()
 	{}
 
-	chromosome::chromosome(const string& new_name,genome* new_genome) : genes(),genome_molecule(new_genome),name(new_name)
+	chromosome::chromosome(const string& new_name,const map<string,gene>& new_genes) : genes(new_genes),name(new_name)
 	{}
-
-    chromosome::chromosome(const map<string,shared_ptr<gene>>& new_genes) : genes(new_genes)
-    {}
 
     bool chromosome::is_gene_loaded(const string& x) const
     {
@@ -39,7 +36,7 @@ namespace scifir
 		}
     }
 
-    shared_ptr<gene>& chromosome::operator[](const string& x)
+    gene& chromosome::operator[](const string& x)
     {
     	if (!is_gene_loaded(x))
 		{
@@ -48,7 +45,7 @@ namespace scifir
 		return genes.at(x);
     }
 
-	const shared_ptr<gene>& chromosome::operator[](const string& x) const
+	const gene& chromosome::operator[](const string& x) const
 	{
 		if (!is_gene_loaded(x))
 		{
@@ -57,17 +54,17 @@ namespace scifir
 		return genes.at(x);
 	}
 
-    void chromosome::switch_gene(const string& x,shared_ptr<gene> new_gene)
+    void chromosome::switch_gene(const string& x,const gene& new_gene)
 	{
 		genes[x] = new_gene;
 	}
 
-	void chromosome::insert_gene(const string& x,shared_ptr<gene> new_gene)
+	void chromosome::insert_gene(const string& x,const gene& new_gene)
 	{
 		//genes.insert(x - 1,new_gene);
 	}
 
-	void chromosome::insert_genes(const string& x,map<string,shared_ptr<gene>> new_genes)
+	void chromosome::insert_genes(const string& x,map<string,gene> new_genes)
 	{
 		//genes.insert(x - 1,new_genes,new_genes.size());
 	}
@@ -81,7 +78,7 @@ namespace scifir
 	{
 		for (const auto& x_gene : genes)
 		{
-			if (x_gene.second->name == gene_name)
+			if (x_gene.second.name == gene_name)
 			{
 				return true;
 			}
@@ -93,7 +90,7 @@ namespace scifir
 	{
 		for (const auto& x_gene : genes)
 		{
-			if (x_gene.second->get_sequence() == gene_sequence)
+			if (x_gene.second.get_sequence() == gene_sequence)
 			{
 				return true;
 			}

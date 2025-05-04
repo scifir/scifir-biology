@@ -21,8 +21,9 @@ namespace scifir
 			explicit rna(const string&);
 
 			dna_sequence to_dna() const;
+			
+			string get_sequence() const;
 
-		private:
 			vector<nbase> bases;
 	};
 }
