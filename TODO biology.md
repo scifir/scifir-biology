@@ -4,6 +4,7 @@
 
 - TODO: add lazy initialization to the genome class of chromosomes and to the chromosome class to genes
 - TODO: (maybe) add a full_common_gene class for genes that have only normal bases (not ultimate bases) which use string as container. Do it only if the loading of a gene is expensive
+- TODO: collections should have the data_sources in a map, with a name for each source
 
 ## DNA (14)
 

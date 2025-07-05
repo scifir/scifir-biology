@@ -40,7 +40,7 @@ namespace scifir
 
 			inline int number_of_genes() const
 			{
-				return genes.size();
+				return int(genes.size());
 			}
 
 			void switch_gene(const string&,const gene&);

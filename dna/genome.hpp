@@ -77,7 +77,7 @@ namespace scifir
 
 			inline int number_of_chromosomes() const
 			{
-				return chromosomes.size();
+				return int(chromosomes.size());
 			}
 
 			bool has_gene(const string&);

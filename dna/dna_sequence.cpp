@@ -62,7 +62,7 @@ namespace scifir
 
 	void dna_sequence::switch_sequence(int index,const string& new_sequence)
 	{
-		int total = index + new_sequence.length();
+		int total = index + int(new_sequence.length());
 		for (int i = index; i < total; i++)
 		{
 			bases[i] = new_sequence[i];
@@ -95,7 +95,7 @@ namespace scifir
 
 	int dna_sequence::number_of_bases() const
 	{
-		return bases.size();
+		return int(bases.size());
 	}
 
 	rna dna_sequence::to_rna() const

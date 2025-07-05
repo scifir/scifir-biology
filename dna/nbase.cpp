@@ -317,11 +317,11 @@ namespace scifir
 		}
 		else if (x_base1 == nbase::U and x_base2 == nbase::A and x_base3 == nbase::A)
 		{
-			return aminoacid::ERROR;
+			return aminoacid::AMINOACID_ERROR;
 		}
 		else if (x_base1 == nbase::U and x_base2 == nbase::A and x_base3 == nbase::G)
 		{
-			return aminoacid::ERROR;
+			return aminoacid::AMINOACID_ERROR;
 		}
 		else if (x_base1 == nbase::U and x_base2 == nbase::G and x_base3 == nbase::U)
 		{
@@ -333,7 +333,7 @@ namespace scifir
 		}
 		else if (x_base1 == nbase::U and x_base2 == nbase::G and x_base3 == nbase::A)
 		{
-			return aminoacid::ERROR;
+			return aminoacid::AMINOACID_ERROR;
 		}
 		else if (x_base1 == nbase::U and x_base2 == nbase::G and x_base3 == nbase::G)
 		{
@@ -533,13 +533,13 @@ namespace scifir
 		}
 		else
 		{
-			return aminoacid::ERROR;
+			return aminoacid::AMINOACID_ERROR;
 		}
 	}
 
 	aminoacid mrna_to_aminoacid(const nbase& x_base1, const nbase& x_base2, const nbase& x_base3)
 	{
-
+		return aminoacid();
 	}
 }
 

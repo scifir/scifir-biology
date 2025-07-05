@@ -19,7 +19,7 @@ namespace scifir
 
 	int gene::number_of_codons() const
 	{
-		return floor(bases.size() / 3);
+		return int(floor(int(bases.size()) / 3));
 	}
 
 	bool gene::is_valid() const
@@ -28,7 +28,7 @@ namespace scifir
 		{
 			return false;
 		}
-		int total = bases.size();
+		int total = int(bases.size());
 		if (!(bases[total - 3].base == nbase::A and bases[total - 2].base == nbase::T and bases[total - 1].base == nbase::T) and !(bases[total - 3].base == nbase::A and bases[total - 2].base == nbase::T and bases[total - 1].base == nbase::C) and !(bases[total - 3].base == nbase::A and bases[total - 2].base == nbase::C and bases[total - 1].base == nbase::T))
 		{
 			return false;
